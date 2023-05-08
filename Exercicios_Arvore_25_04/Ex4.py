@@ -17,29 +17,71 @@ class Node:
         self.children.remove(node)
         node.parent = None
 
-    def exibir_book(self, depth=0):
+    def exibir_capitulo(self, depth=0):
         print(" " * depth + self.title)
         for child in self.children:
-            child.exibir_book(depth + 2)
+            child.exibir_capitulo(depth + 2)
+
+    def remove_chapter(self, title):
+        for child in self.children:
+            if child.title == title:
+                self.children.remove(child)
+                child.parent = None
+                return True
+            else:
+                if child.remove_chapter(title):
+                    return True
+        return False
+
+    def remove_section(self, title):
+        for child in self.children:
+            if child.title == title:
+                self.children.remove(child)
+                child.parent = None
+                return True
+        return False
 
 
 
-book = Node("As Aventuras de João e Maria")
+book = Node("O Mistério da Ilha Perdida")
 
-chapter1 = book.add_child("O Começo da Aventura")
-chapter1.add_child("O Encontro com a Bruxa")
-chapter1.add_child("A Fuga da Casa de Doces")
+capitulo1 = book.add_child("O Desaparecimento")
+capitulo1.add_child("1 - A Aventura Começa")
+capitulo1.add_child("1.2 - O Mapa Enigmático")
 
-chapter2 = book.add_child("Na Floresta Escura")
-chapter2.add_child("O Encontro com o Lobo")
-chapter2.add_child("A Ajuda da Fada")
+capitulo2 = book.add_child("Na Busca da Ilha")
+capitulo2.add_child("2 - O Naufrágio")
+capitulo2.add_child("2.2 - A Descoberta da Ilha")
 
-chapter3 = book.add_child("O Resgate do Rei")
-chapter3.add_child("A Batalha Final")
-chapter3.add_child("O Retorno para Casa")
+capitulo3 = book.add_child("Os Segredos da Ilha")
+capitulo3.add_child("3 - A Caverna Misteriosa")
+capitulo3.add_child("3.2 - O Encontro com os Habitantes da Ilha")
+
+capitulo4 = book.add_child("O Conflito")
+capitulo4.add_child("4 - O Ataque Surpresa")
+capitulo4.add_child("4.2 - A Luta pela Sobrevivência")
+
+capitulo5 = book.add_child("O Mistério Revelado")
+capitulo5.add_child("5 - A Descoberta do Tesouro")
+capitulo5.add_child("5.2 - A Fuga da Ilha")
+
+print("Lista completa:")
+print("")
+
+book.exibir_capitulo()
+
+# Remove um capitulo
+book.remove_chapter("O Conflito")
+
+# Remove uma seção:
+capitulo1.remove_section("1.2 - O Mapa Enigmático")
+
+print("")
+print("Lista com um nó deletado:")
+print("")
+book.exibir_capitulo()
 
 
-book.exibir_book()
 
 
-
+ 

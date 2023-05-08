@@ -63,10 +63,16 @@ atividade1_1 = org.add_atividade(project3, "Banco Digital - 1")
 atividade2_2 = org.add_atividade(project3, "Banco Empresarial - 3")
 atividade3_3 = org.add_atividade(project3, "Banco Individual - 4")
 
+print("Lista completa:")
+print("")
+
 org.organizacao_estrutura()
 
+# Remove um projeto
+org.remove_project(project1)
 
-org.remove_project(project2)
+# Remove uma atividade
+org.remove_atividade(project3, atividade2_2)
 
 print("")
 print("Lista com um nó deletado")
